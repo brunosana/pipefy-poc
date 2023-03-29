@@ -4,6 +4,9 @@ import { PipefyConfig } from './dtos/pipefy-config.dto';
 import { AllWebhooks } from './graphql/all-webhooks/all-webhooks.graphql';
 import { CreateWebhook } from './graphql/create-webhook/create-webhook.graphql';
 import { DeleteWebhook } from './graphql/delete-webhook/delete-webhook.graphql';
+import { GetCard } from './graphql/get-card/get-card.graphql';
+import { MoveCard } from './graphql/move-card/move-card.graphql';
+import { UpdateFields } from './graphql/update-fields/update-fields.graphql';
 import { PipefyService } from './pipefy.service';
 
 type PipefyModuleInput = {
@@ -43,6 +46,9 @@ export class PipefyModule {
         AllWebhooks,
         CreateWebhook,
         DeleteWebhook,
+        GetCard,
+        MoveCard,
+        UpdateFields,
       ],
     };
   }

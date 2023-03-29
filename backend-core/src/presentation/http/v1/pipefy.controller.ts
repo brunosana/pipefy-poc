@@ -1,15 +1,7 @@
 import { CreateWebhookUseCase } from '@core/create-webhook.usecase';
 import { DeleteWebhookUseCase } from '@core/delete-webhook.usecase';
 import { ListAllWebhooksUseCase } from '@core/list-all-webhooks.usecase';
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpCode,
-  Param,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { CreateWebhookPayload } from '../dtos/create-webhook.payload';
 
 @Controller({
