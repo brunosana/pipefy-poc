@@ -8,6 +8,11 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 export class PipefyTestsController {
   constructor(private readonly pipefyService: PipefyInfraService) {}
 
+  @Get('allcards')
+  async getAllCards() {
+    return await this.pipefyService.getAllCards();
+  }
+
   @Get(':id')
   async getCard(@Param('id') id: number) {
     return await this.pipefyService.getCard(id);

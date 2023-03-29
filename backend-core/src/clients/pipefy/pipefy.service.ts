@@ -3,6 +3,7 @@ import { CreateWebhookInputDto } from './dtos/create-webhook.dto';
 import { MoveCardInputDto } from './dtos/move-card.dto';
 import { PipefyConfig } from './dtos/pipefy-config.dto';
 import { UpdateFieldsInputDto } from './dtos/update-fields.dto';
+import { GetAllCards } from './graphql/all-cards/get-all-cards.graphql';
 import { AllWebhooks } from './graphql/all-webhooks/all-webhooks.graphql';
 import { CreateWebhook } from './graphql/create-webhook/create-webhook.graphql';
 import { DeleteWebhook } from './graphql/delete-webhook/delete-webhook.graphql';
@@ -20,6 +21,7 @@ export class PipefyService {
     private readonly getCardRequest: GetCard,
     private readonly moveCardRequest: MoveCard,
     private readonly updateFieldsRequest: UpdateFields,
+    private readonly getAllCardsRequest: GetAllCards,
   ) {}
 
   async allWebhooks() {
@@ -60,6 +62,12 @@ export class PipefyService {
     return await this.updateFieldsRequest.execute({
       fields,
       nodeId,
+    });
+  }
+
+  async allCards() {
+    return await this.getAllCardsRequest.execute({
+      pipeId: this.pipefyConfig.pipeId,
     });
   }
 }

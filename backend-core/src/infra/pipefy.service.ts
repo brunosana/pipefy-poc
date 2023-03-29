@@ -73,4 +73,8 @@ export class PipefyInfraService {
       ],
     });
   }
+
+  async getAllCards() {
+    return await this.pipefyService.allCards();
+  }
 }

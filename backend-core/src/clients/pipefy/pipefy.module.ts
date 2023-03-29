@@ -1,6 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { GraphQLClient } from 'graphql-request';
 import { PipefyConfig } from './dtos/pipefy-config.dto';
+import { GetAllCards } from './graphql/all-cards/get-all-cards.graphql';
 import { AllWebhooks } from './graphql/all-webhooks/all-webhooks.graphql';
 import { CreateWebhook } from './graphql/create-webhook/create-webhook.graphql';
 import { DeleteWebhook } from './graphql/delete-webhook/delete-webhook.graphql';
@@ -49,6 +50,7 @@ export class PipefyModule {
         GetCard,
         MoveCard,
         UpdateFields,
+        GetAllCards,
       ],
     };
   }
