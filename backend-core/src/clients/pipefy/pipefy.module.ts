@@ -2,10 +2,12 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { GraphQLClient } from 'graphql-request';
 import { PipefyConfig } from './dtos/pipefy-config.dto';
 import { AllWebhooks } from './graphql/all-webhooks/all-webhooks.graphql';
+import { CreateWebhook } from './graphql/create-webhook/create-webhook.graphql';
+import { DeleteWebhook } from './graphql/delete-webhook/delete-webhook.graphql';
 import { PipefyService } from './pipefy.service';
 
 type PipefyModuleInput = {
-  pipeId: string;
+  pipeId: number;
   pipefy_url: string;
   pipefy_token: string;
 };
@@ -39,6 +41,8 @@ export class PipefyModule {
           },
         },
         AllWebhooks,
+        CreateWebhook,
+        DeleteWebhook,
       ],
     };
   }

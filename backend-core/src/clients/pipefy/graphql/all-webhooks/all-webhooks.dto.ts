@@ -1,5 +1,5 @@
 export type AllWebhooksInput = {
-  pipeId: string;
+  pipeId: number;
 };
 
 export type AllWebhooksOutput = {

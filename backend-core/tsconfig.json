@@ -22,6 +22,12 @@
       "@core/*": [
         "src/core/*"
       ],
+      "@clients/*": [
+        "src/clients/*"
+      ],
+      "@infra/*": [
+        "src/infra/*"
+      ],
     }
   }
 }
