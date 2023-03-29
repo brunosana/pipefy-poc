@@ -21,7 +21,9 @@ import { PipefyTestsController } from '@presentation/http/v1/pipefy-tests.contro
       useValue: {
         pipeId: Number(process.env.PIPEFY_PIPE_ID),
         phaseWaiting: Number(process.env.PIPEFY_PHASE_WAITING),
+        phaseCheckAll: Number(process.env.PIPEFY_PHASE_CHECK_ALL),
         phaseError: Number(process.env.PIPEFY_PHASE_ERROR),
+        phaseSuccess: Number(process.env.PIPEFY_PHASE_SUCCESS),
         phaseEnd: Number(process.env.PIPEFY_PHASE_END),
       },
     },

@@ -1,8 +1,8 @@
 import { RootModule } from '@di/root.module';
-import { VersioningType } from '@nestjs/common';
+import { ConsoleLogger, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { ApiInterceptor } from './interceptors/api.interceptor';
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 async function bootstrap() {
   const app = await NestFactory.create(RootModule);
 
@@ -10,6 +10,8 @@ async function bootstrap() {
     type: VersioningType.URI,
     prefix: 'v',
   });
+
+  app.useGlobalInterceptors(new ApiInterceptor(new ConsoleLogger()));
 
   await app.listen(3000);
 }

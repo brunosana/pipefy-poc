@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateWebhookInfraDto } from './dtos/create-webhook.infra.dto';
 import { MoveCardInfraDto } from './dtos/move-card.infra.dto';
 import { UpdateEnergisaCardFieldsInfraDto } from './dtos/update-energisa-card-fields.infra.dto';
+import { UpdateErrorCardFieldsInfraDto } from './dtos/update-error-card-fields.infra.dto';
 
 @Injectable()
 export class PipefyInfraService {
@@ -56,6 +57,18 @@ export class PipefyInfraService {
         {
           fieldId: 'tipo_de_contrato',
           value: tipoContrato,
+        },
+      ],
+    });
+  }
+
+  async updateErrorField({ cardId, message }: UpdateErrorCardFieldsInfraDto) {
+    return await this.pipefyService.updateFields({
+      nodeId: cardId,
+      fields: [
+        {
+          fieldId: 'motivo',
+          value: message,
         },
       ],
     });

@@ -13,7 +13,7 @@ export class UpdateEnergisaFieldsUseCase {
     private readonly pipefyData: PipefyData,
   ) {}
 
-  async execute({ data }: UpdateEnergisaFieldsDto) {
+  async execute({ data }: UpdateEnergisaFieldsDto): Promise<void> {
     if (data.action !== 'card.create') {
       throw new BadRequestException(`Wrong event (${data.action})`);
     }
