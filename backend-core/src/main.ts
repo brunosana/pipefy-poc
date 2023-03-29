@@ -11,6 +11,10 @@ async function bootstrap() {
     prefix: 'v',
   });
 
+  app.enableCors({
+    origin: '*',
+  });
+
   app.useGlobalInterceptors(new ApiInterceptor(new ConsoleLogger()));
 
   await app.listen(process.env.PORT || 3000);

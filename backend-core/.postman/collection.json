@@ -33,6 +33,26 @@
 							"response": []
 						},
 						{
+							"name": "GET ALL CARDS",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{core-url}}/v1/pipefy/tests/allcards",
+									"host": [
+										"{{core-url}}"
+									],
+									"path": [
+										"v1",
+										"pipefy",
+										"tests",
+										"allcards"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "MOVE CARD",
 							"request": {
 								"method": "PUT",
