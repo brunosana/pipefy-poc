@@ -17,6 +17,11 @@ export const WebhooksWrapper = styled.div`
 
 `;
 
+export const WebhookMessage = styled.p`
+  margin-top: 2rem;
+  text-align: center;
+`;
+
 export const WebhookHead = styled.div`
   padding: 1rem 2rem;
   border-radius: 0.6rem;

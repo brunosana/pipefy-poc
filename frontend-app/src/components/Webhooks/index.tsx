@@ -1,4 +1,5 @@
-import { WebhookEntity } from '@/entities/webhooks.entity';
+import { coreApi } from '@/api/core.api';
+import { WebhookEntity } from '@/entities/webhook.entity';
 import React, { useState } from 'react';
 import { BsFillTrashFill } from 'react-icons/bs';
 import { Button } from '../Button';
@@ -8,30 +9,39 @@ import {
     WebhookInfo,
     WebhookHead,
     WebhooksWrapper,
+    WebhookMessage
 } from './styles';
 
 const Webhooks: React.FC = () => {
 
-    const [webhooks, setWebhooks] = useState<WebhookEntity[]>([
-        {
-            id: '123',
-            actions: ['card.create'],
-            email: 'test',
-            url: '123',
-            headers: '{}'
-        },
-        {
-            id: '123',
-            actions: ['card.create'],
-            email: 'test',
-            url: '123',
-            headers: '{}'
-        }
-    ]);
+    const [webhooks, setWebhooks] = useState<WebhookEntity[]>([]);
+    const [message, setMessage] = useState('Clique em fech para fazer a pesquisa');
+
+    const getAllWebhooks = async () => {
+        setMessage('Carregando...');
+        coreApi
+        .getAllWebhooks()
+        .then(data => {
+            setWebhooks(data)
+            if(data.length <=0) {
+                setMessage('Não foram encontrados webhooks');
+            }
+        })
+        .catch(err => {
+            setMessage(`Error: ${err.message}`)
+        })
+    }
+
+    const deleteWebhook = async (id: string) => {
+        coreApi
+            .deleteWebhook(id)
+            .then(() => getAllWebhooks())
+            .catch(err => {throw err});
+    }
 
     return (
         <Container>
-            <Button>FETCH</Button>
+            <Button onClick={getAllWebhooks} >FETCH</Button>
             <WebhooksWrapper>
                 <WebhookHead>
                     <WebhookInfo>ID</WebhookInfo>
@@ -39,6 +49,7 @@ const Webhooks: React.FC = () => {
                     <WebhookInfo>URL</WebhookInfo>
                     <WebhookInfo>HEADERS</WebhookInfo>
                 </WebhookHead>
+                { webhooks.length <=0 && <WebhookMessage>{message}</WebhookMessage>}
                 {
                     webhooks.map(webhook => 
                     <Webhook key={webhook.id}>
@@ -47,7 +58,7 @@ const Webhooks: React.FC = () => {
                         <WebhookInfo>{webhook.url}</WebhookInfo>
                         <WebhookInfo>{webhook.headers}</WebhookInfo>
                         <WebhookInfo>
-                            <BsFillTrashFill />
+                            <BsFillTrashFill onClick={() => deleteWebhook(webhook.id)} />
                         </WebhookInfo>
                     </Webhook>
                     )

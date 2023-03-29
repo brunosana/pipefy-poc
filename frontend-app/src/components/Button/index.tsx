@@ -6,11 +6,12 @@ import {
 
 interface ButtonProps {
     children?: React.ReactNode;
+    onClick: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ children, ...props }) => {
+export const Button: React.FC<ButtonProps> = ({ children, onClick, ...props }) => {
     return (
-        <Container {...props}>
+        <Container onClick={onClick} {...props}>
             {children}
         </Container>
     )
